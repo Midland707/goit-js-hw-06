@@ -6,10 +6,10 @@
 // JavaScript містить масив рядків.
 
 // Напиши скрипт, який для кожного елемента масиву ingredients:
-// Створить окремий елемент <li>. Обов'язково використовуй метод document.createElement().
-// Додасть назву інгредієнта як його текстовий вміст.
-// Додасть елементу клас item.
-// Після чого, вставить усі <li> за одну операцію у список ul#ingredients.
+//1. Створить окремий елемент <li>. Обов'язково використовуй метод document.createElement().
+//2. Додасть назву інгредієнта як його текстовий вміст.
+//3. Додасть елементу клас item.
+//4. Після чого, вставить усі <li> за одну операцію у список ul#ingredients.
 
 const ingredients = [
   "Potatoes",
@@ -19,3 +19,14 @@ const ingredients = [
   "Herbs",
   "Condiments",
 ];
+
+const ingredientsList = document.querySelector("#ingredients");
+
+const items = ingredients.map((ingredient) => {
+  const item = document.createElement("li"); //1
+  item.textContent = ingredient; //2
+  item.className = "item"; //3
+  return item;
+});
+
+ingredientsList.append(...items); //4
