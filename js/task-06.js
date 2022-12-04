@@ -23,3 +23,29 @@
 // #validation-input.invalid {
 //   border-color: #f44336;
 // }
+
+const inputName = document.querySelector("#validation-input");
+console.log(inputName);
+
+const dataLength = Number(inputName.getAttribute("data-length"));
+let inputLength = 0;
+
+inputName.addEventListener("input", () => {
+  console.log(inputName.value);
+  inputLength = inputName.value.length;
+});
+
+function remoteClass() {
+  inputName.classList.remove("valid");
+  inputName.classList.remove("invalid");
+}
+
+inputName.onblur = function () {
+  if (inputLength === dataLength) {
+    remoteClass();
+    inputName.classList.add("valid");
+  } else {
+    remoteClass();
+    inputName.classList.add("invalid");
+  }
+};
