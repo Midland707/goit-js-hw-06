@@ -40,7 +40,7 @@ function remoteClass() {
   inputName.classList.remove("invalid");
 }
 
-inputName.onblur = function () {
+inputName.addEventListener("blur", () => {
   if (inputLength === dataLength) {
     remoteClass();
     inputName.classList.add("valid");
@@ -48,4 +48,4 @@ inputName.onblur = function () {
     remoteClass();
     inputName.classList.add("invalid");
   }
-};
+});
