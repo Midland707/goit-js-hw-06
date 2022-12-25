@@ -22,30 +22,47 @@ const boxes = document.querySelector("#boxes");
 const numberInput = document.querySelector("input");
 
 let amount = 0;
+let flag = 0;
+buttonDestroy.disabled = true;
 numberInput.addEventListener("input", () => {
   amount = Number(numberInput.value);
-  buttonCreate.addEventListener("click", createBoxes(amount));
 });
+let items;
+function greatItems() {
+  items = document.createElement("div");
+  items.classList = "items";
+  boxes.append(items);
+}
 
-function createBoxes(amount) {
+buttonCreate.addEventListener("click", createBoxes);
+
+function createBoxes() {
+  buttonDestroy.disabled = false;
   console.log(amount);
+  if (amount <= 0) alert(`Ви ввели не правльне число - ${amount}`);
   console.log("ALL GREATED");
+  if (flag === 0) {
+    greatItems();
+    flag = 1;
+  }
   for (let i = 0; i < amount; i += 1) {
     const item = document.createElement("div");
-    item.classList = "item";
     item.style.backgroundColor = getRandomHexColor();
     item.style.width = `${30 + 10 * i}px`;
     item.style.height = `${30 + 10 * i}px`;
     item.textContent = i + 1;
-    boxes.append(item);
+    items.append(item);
   }
 }
 
 function destroyBoxes() {
   if (boxes === null) console.log("Немає, що витирати");
   else {
-    boxes.remove();
+    const boxesItems = document.querySelector(".items");
+    boxesItems.remove();
     console.log("ALL DELETED");
+    flag = 0;
+    buttonDestroy.disabled = true;
   }
 }
 
